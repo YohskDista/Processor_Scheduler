@@ -1,33 +1,21 @@
 
 package ch.hearc.scheduler.tools;
 
-import java.util.List;
-
-public abstract class Ordonnanceur
+public class SJF_NonPreemptif extends Ordonnanceur
 	{
 
 	/*------------------------------------------------------------------*\
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public Ordonnanceur()
+	public SJF_NonPreemptif()
 		{
-		// Rien
+		// TODO Auto-generated constructor stub
 		}
 
 	/*------------------------------------------------------------------*\
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
-
-	public void addProcessus(Processus processus)
-		{
-		this.listProcessus.add(processus);
-		}
-
-	public void deleteProcessus(Processus processus)
-		{
-		this.listProcessus.remove(processus);
-		}
 
 	/*------------------------------*\
 	|*				Set				*|
@@ -41,23 +29,12 @@ public abstract class Ordonnanceur
 	|*							Methodes Protected						*|
 	\*------------------------------------------------------------------*/
 
-	protected int getTotalRafale()
+	@Override
+	protected Processus changeCurrentProcessus()
 		{
-		int totalRafale = 0;
 
-		for(Processus processus:listProcessus)
-			{
-			totalRafale += processus.getNbRafale();
-			}
-
-		return totalRafale;
+		return null;
 		}
-
-	/*------------------------------------------------------------------*\
-	|*							Methodes Abstract						*|
-	\*------------------------------------------------------------------*/
-
-	protected abstract Processus changeCurrentProcessus();
 
 	/*------------------------------------------------------------------*\
 	|*							Methodes Private						*|
@@ -66,7 +43,4 @@ public abstract class Ordonnanceur
 	/*------------------------------------------------------------------*\
 	|*							Attributs Private						*|
 	\*------------------------------------------------------------------*/
-	// Tools
-	protected List<Processus> listProcessus;
-	protected Processus currentProcessus;
 	}
