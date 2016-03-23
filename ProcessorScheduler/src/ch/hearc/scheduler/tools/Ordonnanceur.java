@@ -59,6 +59,8 @@ public abstract class Ordonnanceur
 
 	protected abstract Processus changeCurrentProcessus();
 
+	protected abstract void tick();
+
 	/*------------------------------------------------------------------*\
 	|*							Methodes Private						*|
 	\*------------------------------------------------------------------*/

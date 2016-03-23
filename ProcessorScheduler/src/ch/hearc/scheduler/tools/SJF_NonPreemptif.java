@@ -32,8 +32,13 @@ public class SJF_NonPreemptif extends Ordonnanceur
 	@Override
 	protected Processus changeCurrentProcessus()
 		{
-
 		return null;
+		}
+
+	@Override
+	protected void tick()
+		{
+
 		}
 
 	/*------------------------------------------------------------------*\
