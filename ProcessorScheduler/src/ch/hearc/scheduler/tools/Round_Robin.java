@@ -8,9 +8,9 @@ public class Round_Robin extends Ordonnanceur
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public Round_Robin()
+	public Round_Robin(String name)
 		{
-		// TODO Auto-generated constructor stub
+		super(name);
 		}
 
 	/*------------------------------------------------------------------*\

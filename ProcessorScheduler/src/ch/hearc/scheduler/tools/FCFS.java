@@ -8,9 +8,9 @@ public class FCFS extends Ordonnanceur
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public FCFS()
+	public FCFS(String name)
 		{
-		// TODO Auto-generated constructor stub
+		super(name);
 		}
 
 	/*------------------------------------------------------------------*\

@@ -10,9 +10,9 @@ public abstract class Ordonnanceur
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public Ordonnanceur()
+	public Ordonnanceur(String name)
 		{
-		// Rien
+		this.name = name;
 		}
 
 	/*------------------------------------------------------------------*\
@@ -68,7 +68,12 @@ public abstract class Ordonnanceur
 	/*------------------------------------------------------------------*\
 	|*							Attributs Private						*|
 	\*------------------------------------------------------------------*/
+
+	//Input
+	protected String name;
+
 	// Tools
 	protected List<Processus> listProcessus;
 	protected Processus currentProcessus;
+
 	}

@@ -8,9 +8,9 @@ public class SJF_NonPreemptif extends Ordonnanceur
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public SJF_NonPreemptif()
+	public SJF_NonPreemptif(String name)
 		{
-		// TODO Auto-generated constructor stub
+		super(name);
 		}
 
 	/*------------------------------------------------------------------*\

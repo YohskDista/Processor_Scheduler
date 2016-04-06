@@ -1,16 +1,21 @@
+package ch.hearc.scheduler.graphic.creation;
 
-package ch.hearc.scheduler.tools;
+import java.awt.FlowLayout;
 
-public class SJF_Preemptif extends Ordonnanceur
+import javax.swing.JPanel;
+
+public class JPanelCreateProcessus extends JPanel
 	{
 
 	/*------------------------------------------------------------------*\
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public SJF_Preemptif(String name)
+	public JPanelCreateProcessus()
 		{
-		super(name);
+		geometry();
+		control();
+		appearance();
 		}
 
 	/*------------------------------------------------------------------*\
@@ -26,26 +31,41 @@ public class SJF_Preemptif extends Ordonnanceur
 	\*------------------------------*/
 
 	/*------------------------------------------------------------------*\
-	|*							Methodes Protected						*|
-	\*------------------------------------------------------------------*/
-
-	@Override
-	protected Processus changeCurrentProcessus()
-		{
-		return null;
-		}
-
-	@Override
-	protected void tick()
-		{
-
-		}
-
-	/*------------------------------------------------------------------*\
 	|*							Methodes Private						*|
 	\*------------------------------------------------------------------*/
+
+	private void geometry()
+		{
+			// JComponent : Instanciation
+
+			// Layout : Specification
+			{
+			FlowLayout flowlayout = new FlowLayout(FlowLayout.CENTER);
+			setLayout(flowlayout);
+
+			// flowlayout.setHgap(20);
+			// flowlayout.setVgap(20);
+			}
+
+		// JComponent : add
+
+		}
+
+	private void control()
+		{
+		// rien
+		}
+
+	private void appearance()
+		{
+		// rien
+		}
 
 	/*------------------------------------------------------------------*\
 	|*							Attributs Private						*|
 	\*------------------------------------------------------------------*/
+
+	// Tools
+
+
 	}
