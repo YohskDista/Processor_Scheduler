@@ -75,6 +75,8 @@ public class JPanelCreateProcessus extends JPanel
 		this.createConstraint(springLayout, jLabelNom, jTextFieldNom, 5);
 		this.createConstraint(springLayout, jLabelArrive, jTextFieldArrive, 30);
 		this.createConstraint(springLayout, jLabelRafale, jTextFieldRafale, 55);
+
+		springLayout.putConstraint(SpringLayout.WEST, jButtonCreateProcessus, 10, SpringLayout.WEST, this);
 		springLayout.putConstraint(SpringLayout.NORTH, jButtonCreateProcessus, 80, SpringLayout.NORTH, this);
 		}
 
@@ -109,7 +111,7 @@ public class JPanelCreateProcessus extends JPanel
 
 	private void createConstraint(SpringLayout springLayout, JLabel jLabel, JTextField jTextField, int space)
 		{
-		springLayout.putConstraint(SpringLayout.WEST, jLabel, 0, SpringLayout.WEST, this);
+		springLayout.putConstraint(SpringLayout.WEST, jLabel, 10, SpringLayout.WEST, this);
 		springLayout.putConstraint(SpringLayout.NORTH, jLabel, space, SpringLayout.NORTH, this);
 		springLayout.putConstraint(SpringLayout.WEST, jTextField, 80, SpringLayout.WEST, this);
 		springLayout.putConstraint(SpringLayout.NORTH, jTextField, space, SpringLayout.NORTH, this);

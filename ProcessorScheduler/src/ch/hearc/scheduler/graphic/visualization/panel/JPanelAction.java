@@ -1,24 +1,25 @@
+package ch.hearc.scheduler.graphic.visualization.panel;
 
-package ch.hearc.scheduler.graphic.visualization;
+import java.awt.Color;
+import java.awt.FlowLayout;
 
-import java.awt.BorderLayout;
-
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-import ch.hearc.scheduler.graphic.visualization.panel.JPanelAction;
-import ch.hearc.scheduler.graphic.visualization.panel.JPanelCommande;
 import ch.hearc.scheduler.tools.Ordonnanceur;
 import ch.hearc.scheduler.tools.Processus;
 
-public class JPanelVisualization extends JPanel
+public class JPanelAction extends JPanel
 	{
 
 	/*------------------------------------------------------------------*\
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JPanelVisualization()
+	public JPanelAction()
 		{
+		this.ordonnanceur = null;
+
 		geometry();
 		control();
 		appearance();
@@ -30,9 +31,7 @@ public class JPanelVisualization extends JPanel
 
 	public void addProcessus(Processus processus)
 		{
-		if (this.jPanelAction.getOrdonnanceur() != null) { return; }
-
-		this.jPanelAction.addProcessus(processus);
+		this.ordonnanceur.addProcessus(processus);
 		}
 
 	/*------------------------------*\
@@ -41,7 +40,7 @@ public class JPanelVisualization extends JPanel
 
 	public void setOrdonnanceur(Ordonnanceur ordonnanceur)
 		{
-		this.jPanelAction.setOrdonnanceur(ordonnanceur);
+		this.ordonnanceur = ordonnanceur;
 		}
 
 	/*------------------------------*\
@@ -50,7 +49,7 @@ public class JPanelVisualization extends JPanel
 
 	public Ordonnanceur getOrdonnanceur()
 		{
-		return this.jPanelAction.getOrdonnanceur();
+		return this.ordonnanceur;
 		}
 
 	/*------------------------------------------------------------------*\
@@ -60,21 +59,18 @@ public class JPanelVisualization extends JPanel
 	private void geometry()
 		{
 			// JComponent : Instanciation
-		this.jPanelAction = new JPanelAction();
-		this.jPanelCommande = new JPanelCommande(jPanelAction);
 
 			// Layout : Specification
 			{
-			BorderLayout borderLayout = new BorderLayout();
-			setLayout(borderLayout);
+			FlowLayout flowlayout = new FlowLayout(FlowLayout.CENTER);
+			setLayout(flowlayout);
 
 			// flowlayout.setHgap(20);
 			// flowlayout.setVgap(20);
 			}
 
 		// JComponent : add
-		this.add(this.jPanelAction, BorderLayout.CENTER);
-		this.add(this.jPanelCommande, BorderLayout.SOUTH);
+
 		}
 
 	private void control()
@@ -84,15 +80,17 @@ public class JPanelVisualization extends JPanel
 
 	private void appearance()
 		{
-		// rien
+		this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
 		}
 
 	/*------------------------------------------------------------------*\
 	|*							Attributs Private						*|
 	\*------------------------------------------------------------------*/
 
+	// Input
+	private Ordonnanceur ordonnanceur;
+
 	// Tools
-	private JPanelAction jPanelAction;
-	private JPanelCommande jPanelCommande;
+
 
 	}
