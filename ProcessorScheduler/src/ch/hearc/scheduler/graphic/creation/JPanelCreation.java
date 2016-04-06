@@ -1,5 +1,5 @@
-package ch.hearc.scheduler.graphic.creation;
 
+package ch.hearc.scheduler.graphic.creation;
 import java.awt.BorderLayout;
 
 import javax.swing.Box;
@@ -7,6 +7,10 @@ import javax.swing.JPanel;
 
 import ch.hearc.scheduler.graphic.creation.panel.JPanelCreateOrdonnanceur;
 import ch.hearc.scheduler.graphic.creation.panel.JPanelCreateProcessus;
+import ch.hearc.scheduler.graphic.visualization.JPanelVisualization;
+import ch.hearc.scheduler.tools.Ordonnanceur;
+import ch.hearc.scheduler.tools.Processus;
+
 
 public class JPanelCreation extends JPanel
 	{
@@ -15,8 +19,10 @@ public class JPanelCreation extends JPanel
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JPanelCreation()
+	public JPanelCreation(JPanelVisualization jPanelVisualization)
 		{
+		this.jPanelVisualization = jPanelVisualization;
+
 		geometry();
 		control();
 		appearance();
@@ -26,9 +32,19 @@ public class JPanelCreation extends JPanel
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
+	public void addProcessus(Processus processus)
+		{
+		this.jPanelVisualization.addProcessus(processus);
+		}
+
 	/*------------------------------*\
 	|*				Set				*|
 	\*------------------------------*/
+
+	public void setOrdonnanceur(Ordonnanceur ordonnanceur)
+		{
+		this.jPanelVisualization.setOrdonnanceur(ordonnanceur);
+		}
 
 	/*------------------------------*\
 	|*				Get				*|
@@ -40,9 +56,9 @@ public class JPanelCreation extends JPanel
 
 	private void geometry()
 		{
-			// JComponent : Instanciation
-		this.jPanelCreateOrdonnanceur = new JPanelCreateOrdonnanceur();
-		this.jPanelCreateProcessus = new JPanelCreateProcessus();
+		// JComponent : Instanciation
+		this.jPanelCreateOrdonnanceur = new JPanelCreateOrdonnanceur(this);
+		this.jPanelCreateProcessus = new JPanelCreateProcessus(this);
 
 		this.boxV = Box.createVerticalBox();
 
@@ -66,6 +82,9 @@ public class JPanelCreation extends JPanel
 	/*------------------------------------------------------------------*\
 	|*							Attributs Private						*|
 	\*------------------------------------------------------------------*/
+
+	// Input
+	private JPanelVisualization jPanelVisualization;
 
 	// Tools
 	private JPanelCreateOrdonnanceur jPanelCreateOrdonnanceur;

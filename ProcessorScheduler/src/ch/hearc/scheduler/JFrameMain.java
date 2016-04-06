@@ -42,8 +42,8 @@ public class JFrameMain extends JFrame
 	private void geometry()
 		{
 			// JComponent : Instanciation
-		this.jPanelCreation = new JPanelCreation();
 		this.jPanelVisualization = new JPanelVisualization();
+		this.jPanelCreation = new JPanelCreation(this.jPanelVisualization);
 
 		this.jSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, this.jPanelCreation, this.jPanelVisualization);
 		this.jSplitPane.setDividerLocation(200);

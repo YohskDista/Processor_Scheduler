@@ -2,6 +2,8 @@ package ch.hearc.scheduler.graphic.creation.panel;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -12,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
+import ch.hearc.scheduler.graphic.creation.JPanelCreation;
 import ch.hearc.scheduler.tools.FCFS;
 import ch.hearc.scheduler.tools.Ordonnanceur;
 import ch.hearc.scheduler.tools.Round_Robin;
@@ -25,8 +28,10 @@ public class JPanelCreateOrdonnanceur extends JPanel
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JPanelCreateOrdonnanceur()
+	public JPanelCreateOrdonnanceur(JPanelCreation jPanelCreation)
 		{
+		this.jPanelCreation = jPanelCreation;
+
 		createListOrdonnanceur();
 
 		geometry();
@@ -90,7 +95,16 @@ public class JPanelCreateOrdonnanceur extends JPanel
 
 	private void control()
 		{
-		// rien
+		this.jButtonCreateOrdonnanceur.addMouseListener(new MouseAdapter()
+			{
+				@Override
+				public void mouseClicked(MouseEvent arg0)
+					{
+					Ordonnanceur ordonnanceur = (Ordonnanceur) jComboBoxChooseOrdonnanceur.getSelectedItem();
+
+					jPanelCreation.setOrdonnanceur(ordonnanceur);
+					}
+			});
 		}
 
 	private void appearance()
@@ -101,6 +115,9 @@ public class JPanelCreateOrdonnanceur extends JPanel
 	/*------------------------------------------------------------------*\
 	|*							Attributs Private						*|
 	\*------------------------------------------------------------------*/
+
+	// Input
+	private JPanelCreation jPanelCreation;
 
 	// Tools
 	private Map<String, Ordonnanceur> mapOrdonnanceur;

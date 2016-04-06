@@ -1,8 +1,12 @@
+
 package ch.hearc.scheduler.graphic.visualization;
 
 import java.awt.FlowLayout;
 
 import javax.swing.JPanel;
+
+import ch.hearc.scheduler.tools.Ordonnanceur;
+import ch.hearc.scheduler.tools.Processus;
 
 public class JPanelVisualization extends JPanel
 	{
@@ -22,13 +26,30 @@ public class JPanelVisualization extends JPanel
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
+	public void addProcessus(Processus processus)
+		{
+		if (this.ordonnanceur != null) { return; }
+
+		this.ordonnanceur.addProcessus(processus);
+		}
+
 	/*------------------------------*\
 	|*				Set				*|
 	\*------------------------------*/
 
+	public void setOrdonnanceur(Ordonnanceur ordonnanceur)
+		{
+		this.ordonnanceur = ordonnanceur;
+		}
+
 	/*------------------------------*\
 	|*				Get				*|
 	\*------------------------------*/
+
+	public Ordonnanceur getOrdonnanceur()
+		{
+		return this.ordonnanceur;
+		}
 
 	/*------------------------------------------------------------------*\
 	|*							Methodes Private						*|
@@ -66,6 +87,6 @@ public class JPanelVisualization extends JPanel
 	\*------------------------------------------------------------------*/
 
 	// Tools
-
+	private Ordonnanceur ordonnanceur;
 
 	}
