@@ -50,10 +50,10 @@ public class JPanelCreateOrdonnanceur extends JPanel
 		{
 		this.mapOrdonnanceur = new HashMap<String, Ordonnanceur>(NB_TYPE_ORDONNANCEUR);
 
-		this.mapOrdonnanceur.put("FCFS", new FCFS());
-		this.mapOrdonnanceur.put("SJF non Préemptif", new SJF_NonPreemptif());
-		this.mapOrdonnanceur.put("SJF Préemptif", new SJF_Preemptif());
-		this.mapOrdonnanceur.put("Round Robin", new Round_Robin());
+		this.mapOrdonnanceur.put("FCFS", new FCFS("FCFS"));
+		this.mapOrdonnanceur.put("SJF non Préemptif", new SJF_NonPreemptif("SJF non Préemptif"));
+		this.mapOrdonnanceur.put("SJF Préemptif", new SJF_Preemptif("SJF Préemptif"));
+		this.mapOrdonnanceur.put("Round Robin", new Round_Robin("Round Robin"));
 		}
 
 	private void geometry()

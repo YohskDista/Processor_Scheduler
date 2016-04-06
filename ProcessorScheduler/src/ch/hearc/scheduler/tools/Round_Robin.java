@@ -8,9 +8,9 @@ public class Round_Robin extends Ordonnanceur
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public Round_Robin()
+	public Round_Robin(String name)
 		{
-		// TODO Auto-generated constructor stub
+		super(name);
 		}
 
 	/*------------------------------------------------------------------*\
@@ -32,8 +32,13 @@ public class Round_Robin extends Ordonnanceur
 	@Override
 	protected Processus changeCurrentProcessus()
 		{
-
 		return null;
+		}
+
+	@Override
+	protected void tick()
+		{
+
 		}
 
 	/*------------------------------------------------------------------*\

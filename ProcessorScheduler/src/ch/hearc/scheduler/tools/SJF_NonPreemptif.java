@@ -8,9 +8,9 @@ public class SJF_NonPreemptif extends Ordonnanceur
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public SJF_NonPreemptif()
+	public SJF_NonPreemptif(String name)
 		{
-		// TODO Auto-generated constructor stub
+		super(name);
 		}
 
 	/*------------------------------------------------------------------*\
@@ -32,8 +32,13 @@ public class SJF_NonPreemptif extends Ordonnanceur
 	@Override
 	protected Processus changeCurrentProcessus()
 		{
-
 		return null;
+		}
+
+	@Override
+	protected void tick()
+		{
+
 		}
 
 	/*------------------------------------------------------------------*\
