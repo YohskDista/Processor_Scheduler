@@ -17,6 +17,23 @@ public class SJF_Preemptif extends Ordonnanceur
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
+	/*------------------------------------------------------------------*\
+	|*							Methodes Abstract						*|
+	\*------------------------------------------------------------------*/
+
+	@Override
+	public void initTick()
+		{
+		// TODO Auto-generated method stub
+
+		}
+
+	@Override
+	public void tick()
+		{
+
+		}
+
 	/*------------------------------*\
 	|*				Set				*|
 	\*------------------------------*/
@@ -30,15 +47,16 @@ public class SJF_Preemptif extends Ordonnanceur
 	\*------------------------------------------------------------------*/
 
 	@Override
-	protected Processus changeCurrentProcessus()
+	protected void changeCurrentProcessus(Processus newProc)
 		{
-		return null;
+
 		}
 
 	@Override
-	protected void tick()
+	protected Processus getNext()
 		{
-
+		// TODO Auto-generated method stub
+		return null;
 		}
 
 	/*------------------------------------------------------------------*\

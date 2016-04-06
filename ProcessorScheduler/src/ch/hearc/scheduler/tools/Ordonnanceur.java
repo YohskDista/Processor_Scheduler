@@ -1,6 +1,7 @@
 
 package ch.hearc.scheduler.tools;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Ordonnanceur
@@ -13,6 +14,8 @@ public abstract class Ordonnanceur
 	public Ordonnanceur(String name)
 		{
 		this.name = name;
+		this.currentProcessus = null;
+		this.listProcessus = new ArrayList<Processus>();
 		}
 
 	/*------------------------------------------------------------------*\
@@ -28,6 +31,14 @@ public abstract class Ordonnanceur
 		{
 		this.listProcessus.remove(processus);
 		}
+
+	/*------------------------------------------------------------------*\
+	|*							Methodes Abstract						*|
+	\*------------------------------------------------------------------*/
+
+	public abstract void initTick();
+
+	public abstract void tick();
 
 	/*------------------------------*\
 	|*				Set				*|
@@ -57,9 +68,9 @@ public abstract class Ordonnanceur
 	|*							Methodes Abstract						*|
 	\*------------------------------------------------------------------*/
 
-	protected abstract Processus changeCurrentProcessus();
+	protected abstract void changeCurrentProcessus(Processus newProc);
 
-	protected abstract void tick();
+	protected abstract Processus getNext();
 
 	/*------------------------------------------------------------------*\
 	|*							Methodes Private						*|

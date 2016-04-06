@@ -1,6 +1,7 @@
 
 package ch.hearc.scheduler.tools;
 
+
 public class Round_Robin extends Ordonnanceur
 	{
 
@@ -17,6 +18,21 @@ public class Round_Robin extends Ordonnanceur
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
+	/*------------------------------------------------------------------*\
+	|*							Methodes Abstract						*|
+	\*------------------------------------------------------------------*/
+
+	@Override
+	public void initTick()
+		{
+		}
+
+	@Override
+	public void tick()
+		{
+
+		}
+
 	/*------------------------------*\
 	|*				Set				*|
 	\*------------------------------*/
@@ -30,15 +46,16 @@ public class Round_Robin extends Ordonnanceur
 	\*------------------------------------------------------------------*/
 
 	@Override
-	protected Processus changeCurrentProcessus()
+	protected void changeCurrentProcessus(Processus newProc)
 		{
-		return null;
+
 		}
 
 	@Override
-	protected void tick()
+	protected Processus getNext()
 		{
-
+		// TODO Auto-generated method stub
+		return null;
 		}
 
 	/*------------------------------------------------------------------*\
