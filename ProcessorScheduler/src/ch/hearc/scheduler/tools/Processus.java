@@ -14,6 +14,7 @@ public class Processus
 		this.nbRafale = nbRafale;
 		this.arrive = arrive;
 		this.rafaleActuel = rafaleActuel;
+		this.etat =  Etat.READY;
 		}
 
 	public Processus(String nom, int nbRafale, int arrive)

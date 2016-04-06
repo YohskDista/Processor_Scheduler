@@ -17,6 +17,29 @@ public class FCFS extends Ordonnanceur
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
+	/*------------------------------------------------------------------*\
+	|*							Methodes Abstract						*|
+	\*------------------------------------------------------------------*/
+	@Override
+	public void initTick()
+		{
+		changeCurrentProcessus(getNext());
+		}
+
+	@Override
+	public void tick()
+		{
+		int rafaleActu = currentProcessus.getRafaleActuel();
+		rafaleActu++;
+		currentProcessus.setRafaleActuel(rafaleActu);
+
+		if (currentProcessus.getRafaleActuel() >= currentProcessus.getNbRafale())
+			{
+			currentProcessus.setEtat(Etat.FINISH);
+			changeCurrentProcessus(getNext());
+			}
+		}
+
 	/*------------------------------*\
 	|*				Set				*|
 	\*------------------------------*/
@@ -30,15 +53,24 @@ public class FCFS extends Ordonnanceur
 	\*------------------------------------------------------------------*/
 
 	@Override
-	protected Processus changeCurrentProcessus()
+	protected void changeCurrentProcessus(Processus newProc)
 		{
-		return null;
+		try
+			{
+			currentProcessus = newProc;
+			currentProcessus.setEtat(Etat.RUNNING);
+			}
+		catch (NullPointerException e)
+			{
+			System.out.println("Program finish");
+			}
 		}
 
 	@Override
-	protected void tick()
+	protected Processus getNext()
 		{
-
+		int indexOfCurrent = listProcessus.indexOf(currentProcessus);
+		return listProcessus.get(indexOfCurrent + 1);
 		}
 
 	/*------------------------------------------------------------------*\
