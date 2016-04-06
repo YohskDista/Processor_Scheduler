@@ -1,7 +1,6 @@
 
 package ch.hearc.scheduler.tools;
 
-
 public class Round_Robin extends Ordonnanceur
 	{
 
@@ -12,6 +11,8 @@ public class Round_Robin extends Ordonnanceur
 	public Round_Robin(String name)
 		{
 		super(name);
+
+		this.myTimeQuantum = 0;
 		}
 
 	/*------------------------------------------------------------------*\
@@ -25,12 +26,28 @@ public class Round_Robin extends Ordonnanceur
 	@Override
 	public void initTick()
 		{
+		changeCurrentProcessus(getNext());
 		}
 
 	@Override
 	public void tick()
 		{
+		int rafaleActu = currentProcessus.getRafaleActuel();
+		rafaleActu++;
+		currentProcessus.setRafaleActuel(rafaleActu);
 
+		myTimeQuantum++;
+
+		if (currentProcessus.getRafaleActuel() >= currentProcessus.getNbRafale())
+			{
+			currentProcessus.setEtat(Etat.FINISH);
+			changeCurrentProcessus(getNext());
+			}
+		else if (myTimeQuantum >= timeQuantum)
+			{
+			currentProcessus.setEtat(Etat.READY);
+			changeCurrentProcessus(getNext());
+			}
 		}
 
 	/*------------------------------*\
@@ -48,14 +65,24 @@ public class Round_Robin extends Ordonnanceur
 	@Override
 	protected void changeCurrentProcessus(Processus newProc)
 		{
+		try
+			{
+			this.myTimeQuantum = 0;
 
+			currentProcessus = newProc;
+			currentProcessus.setEtat(Etat.RUNNING);
+			}
+		catch (NullPointerException e)
+			{
+			System.out.println("Program finish");
+			}
 		}
 
 	@Override
 	protected Processus getNext()
 		{
-		// TODO Auto-generated method stub
-		return null;
+		int indexOfCurrent = listProcessus.indexOf(currentProcessus);
+		return listProcessus.get(indexOfCurrent + 1);
 		}
 
 	/*------------------------------------------------------------------*\
@@ -65,4 +92,6 @@ public class Round_Robin extends Ordonnanceur
 	/*------------------------------------------------------------------*\
 	|*							Attributs Private						*|
 	\*------------------------------------------------------------------*/
+	// tools
+	private int myTimeQuantum;
 	}
