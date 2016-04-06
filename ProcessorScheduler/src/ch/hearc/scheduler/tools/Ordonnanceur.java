@@ -11,11 +11,17 @@ public abstract class Ordonnanceur
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public Ordonnanceur(String name)
+	public Ordonnanceur(String name, int timeQuantum)
 		{
 		this.name = name;
 		this.currentProcessus = null;
 		this.listProcessus = new ArrayList<Processus>();
+		this.timeQuantum = timeQuantum;
+		}
+
+	public Ordonnanceur(String name)
+		{
+		this(name, 0);
 		}
 
 	/*------------------------------------------------------------------*\
@@ -90,11 +96,12 @@ public abstract class Ordonnanceur
 	\*------------------------------------------------------------------*/
 
 	/*------------------------------------------------------------------*\
-	|*							Attributs Private						*|
+	|*							Attributs Protected						*|
 	\*------------------------------------------------------------------*/
 
 	//Input
 	protected String name;
+	protected int timeQuantum;
 
 	// Tools
 	protected List<Processus> listProcessus;
