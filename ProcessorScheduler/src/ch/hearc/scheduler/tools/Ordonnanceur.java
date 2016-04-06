@@ -29,6 +29,14 @@ public abstract class Ordonnanceur
 		this.listProcessus.remove(processus);
 		}
 
+	@Override
+	public String toString()
+		{
+		StringBuilder builder = new StringBuilder();
+		builder.append(this.name);
+		return builder.toString();
+		}
+
 	/*------------------------------*\
 	|*				Set				*|
 	\*------------------------------*/

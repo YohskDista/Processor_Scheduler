@@ -4,8 +4,10 @@ package ch.hearc.scheduler;
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
+import javax.swing.JSplitPane;
 
-import ch.hearc.scheduler.graphic.JPanelCreation;
+import ch.hearc.scheduler.graphic.creation.JPanelCreation;
+import ch.hearc.scheduler.graphic.visualization.JPanelVisualization;
 
 public class JFrameMain extends JFrame
 	{
@@ -41,6 +43,11 @@ public class JFrameMain extends JFrame
 		{
 			// JComponent : Instanciation
 		this.jPanelCreation = new JPanelCreation();
+		this.jPanelVisualization = new JPanelVisualization();
+
+		this.jSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, this.jPanelCreation, this.jPanelVisualization);
+		this.jSplitPane.setDividerLocation(200);
+		this.jSplitPane.setOneTouchExpandable(true);
 
 			// Layout : Specification
 			{
@@ -52,7 +59,7 @@ public class JFrameMain extends JFrame
 			}
 
 		// JComponent : add
-		add(this.jPanelCreation, BorderLayout.CENTER);
+		add(this.jSplitPane, BorderLayout.CENTER);
 		}
 
 	private void control()
@@ -62,7 +69,7 @@ public class JFrameMain extends JFrame
 
 	private void appearance()
 		{
-		setSize(600, 400);
+		setSize(900, 600);
 		setLocationRelativeTo(null); // frame centrer
 		setVisible(true); // last!
 		}
@@ -73,5 +80,8 @@ public class JFrameMain extends JFrame
 
 	// Tools
 	private JPanelCreation jPanelCreation;
+	private JPanelVisualization jPanelVisualization;
+
+	private JSplitPane jSplitPane;
 
 	}

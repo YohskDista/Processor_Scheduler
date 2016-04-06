@@ -1,10 +1,14 @@
-package ch.hearc.scheduler.graphic.creation;
+package ch.hearc.scheduler.graphic.creation.panel;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
@@ -60,6 +64,11 @@ public class JPanelCreateOrdonnanceur extends JPanel
 		{
 			// JComponent : Instanciation
 		this.jComboBoxChooseOrdonnanceur = new JComboBox<Ordonnanceur>();
+		this.jButtonCreateOrdonnanceur = new JButton("Créer");
+
+		this.boxV = Box.createVerticalBox();
+		this.boxV.add(this.jComboBoxChooseOrdonnanceur);
+		this.boxV.add(this.jButtonCreateOrdonnanceur);
 
 		for(Entry<String, Ordonnanceur> entry : mapOrdonnanceur.entrySet())
 			{
@@ -76,7 +85,7 @@ public class JPanelCreateOrdonnanceur extends JPanel
 			}
 
 		// JComponent : add
-		this.add(jComboBoxChooseOrdonnanceur);
+		this.add(this.boxV);
 		}
 
 	private void control()
@@ -86,7 +95,7 @@ public class JPanelCreateOrdonnanceur extends JPanel
 
 	private void appearance()
 		{
-		// rien
+		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		}
 
 	/*------------------------------------------------------------------*\
@@ -97,6 +106,9 @@ public class JPanelCreateOrdonnanceur extends JPanel
 	private Map<String, Ordonnanceur> mapOrdonnanceur;
 
 	private JComboBox<Ordonnanceur> jComboBoxChooseOrdonnanceur;
+	private JButton jButtonCreateOrdonnanceur;
+
+	private Box boxV;
 
 	// Constantes
 	private final static int NB_TYPE_ORDONNANCEUR = 4;

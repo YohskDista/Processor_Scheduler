@@ -1,12 +1,12 @@
-package ch.hearc.scheduler.graphic;
+package ch.hearc.scheduler.graphic.creation;
 
 import java.awt.BorderLayout;
 
 import javax.swing.Box;
 import javax.swing.JPanel;
 
-import ch.hearc.scheduler.graphic.creation.JPanelCreateOrdonnanceur;
-import ch.hearc.scheduler.graphic.creation.JPanelCreateProcessus;
+import ch.hearc.scheduler.graphic.creation.panel.JPanelCreateOrdonnanceur;
+import ch.hearc.scheduler.graphic.creation.panel.JPanelCreateProcessus;
 
 public class JPanelCreation extends JPanel
 	{
@@ -47,7 +47,7 @@ public class JPanelCreation extends JPanel
 		this.boxV = Box.createVerticalBox();
 
 		this.boxV.add(jPanelCreateOrdonnanceur);
-		this.boxV.add(jPanelCreateOrdonnanceur);
+		this.boxV.add(jPanelCreateProcessus);
 
 		setLayout(new BorderLayout());
 		add(boxV, BorderLayout.CENTER);

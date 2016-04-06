@@ -1,17 +1,17 @@
-package ch.hearc.scheduler.graphic.creation;
+package ch.hearc.scheduler.graphic.visualization;
 
 import java.awt.FlowLayout;
 
 import javax.swing.JPanel;
 
-public class JPanelCreateProcessus extends JPanel
+public class JPanelVisualization extends JPanel
 	{
 
 	/*------------------------------------------------------------------*\
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JPanelCreateProcessus()
+	public JPanelVisualization()
 		{
 		geometry();
 		control();
