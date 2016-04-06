@@ -10,7 +10,6 @@ public class Processus
 
 	public Processus(String nom, int nbRafale, int arrive, int rafaleActuel)
 		{
-		super();
 		this.nom = nom;
 		this.nbRafale = nbRafale;
 		this.arrive = arrive;

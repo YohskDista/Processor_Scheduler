@@ -1,20 +1,17 @@
+package ch.hearc.scheduler.graphic.creation;
 
-package ch.hearc.scheduler;
+import java.awt.FlowLayout;
 
-import java.awt.BorderLayout;
+import javax.swing.JPanel;
 
-import javax.swing.JFrame;
-
-import ch.hearc.scheduler.graphic.JPanelCreation;
-
-public class JFrameMain extends JFrame
+public class JPanelCreateProcessus extends JPanel
 	{
 
 	/*------------------------------------------------------------------*\
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JFrameMain()
+	public JPanelCreateProcessus()
 		{
 		geometry();
 		control();
@@ -40,31 +37,28 @@ public class JFrameMain extends JFrame
 	private void geometry()
 		{
 			// JComponent : Instanciation
-		this.jPanelCreation = new JPanelCreation();
 
 			// Layout : Specification
 			{
-			BorderLayout borderLayout = new BorderLayout();
-			setLayout(borderLayout);
+			FlowLayout flowlayout = new FlowLayout(FlowLayout.CENTER);
+			setLayout(flowlayout);
 
-			// borderLayout.setHgap(20);
-			// borderLayout.setVgap(20);
+			// flowlayout.setHgap(20);
+			// flowlayout.setVgap(20);
 			}
 
 		// JComponent : add
-		add(this.jPanelCreation, BorderLayout.CENTER);
+
 		}
 
 	private void control()
 		{
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		// rien
 		}
 
 	private void appearance()
 		{
-		setSize(600, 400);
-		setLocationRelativeTo(null); // frame centrer
-		setVisible(true); // last!
+		// rien
 		}
 
 	/*------------------------------------------------------------------*\
@@ -72,6 +66,6 @@ public class JFrameMain extends JFrame
 	\*------------------------------------------------------------------*/
 
 	// Tools
-	private JPanelCreation jPanelCreation;
+
 
 	}

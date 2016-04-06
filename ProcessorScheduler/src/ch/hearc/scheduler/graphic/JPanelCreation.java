@@ -1,20 +1,21 @@
-
-package ch.hearc.scheduler;
+package ch.hearc.scheduler.graphic;
 
 import java.awt.BorderLayout;
 
-import javax.swing.JFrame;
+import javax.swing.Box;
+import javax.swing.JPanel;
 
-import ch.hearc.scheduler.graphic.JPanelCreation;
+import ch.hearc.scheduler.graphic.creation.JPanelCreateOrdonnanceur;
+import ch.hearc.scheduler.graphic.creation.JPanelCreateProcessus;
 
-public class JFrameMain extends JFrame
+public class JPanelCreation extends JPanel
 	{
 
 	/*------------------------------------------------------------------*\
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public JFrameMain()
+	public JPanelCreation()
 		{
 		geometry();
 		control();
@@ -40,31 +41,26 @@ public class JFrameMain extends JFrame
 	private void geometry()
 		{
 			// JComponent : Instanciation
-		this.jPanelCreation = new JPanelCreation();
+		this.jPanelCreateOrdonnanceur = new JPanelCreateOrdonnanceur();
+		this.jPanelCreateProcessus = new JPanelCreateProcessus();
 
-			// Layout : Specification
-			{
-			BorderLayout borderLayout = new BorderLayout();
-			setLayout(borderLayout);
+		this.boxV = Box.createVerticalBox();
 
-			// borderLayout.setHgap(20);
-			// borderLayout.setVgap(20);
-			}
+		this.boxV.add(jPanelCreateOrdonnanceur);
+		this.boxV.add(jPanelCreateOrdonnanceur);
 
-		// JComponent : add
-		add(this.jPanelCreation, BorderLayout.CENTER);
+		setLayout(new BorderLayout());
+		add(boxV, BorderLayout.CENTER);
 		}
 
 	private void control()
 		{
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		// rien
 		}
 
 	private void appearance()
 		{
-		setSize(600, 400);
-		setLocationRelativeTo(null); // frame centrer
-		setVisible(true); // last!
+		// rien
 		}
 
 	/*------------------------------------------------------------------*\
@@ -72,6 +68,8 @@ public class JFrameMain extends JFrame
 	\*------------------------------------------------------------------*/
 
 	// Tools
-	private JPanelCreation jPanelCreation;
+	private JPanelCreateOrdonnanceur jPanelCreateOrdonnanceur;
+	private JPanelCreateProcessus jPanelCreateProcessus;
+	private Box boxV;
 
 	}
