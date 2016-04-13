@@ -1,7 +1,11 @@
 
 package ch.hearc.scheduler.tools;
 
+import java.awt.Color;
+
 import javax.swing.Box;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 
 public class Processus
 	{
@@ -10,18 +14,19 @@ public class Processus
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
 
-	public Processus(String nom, int nbRafale, int arrive, int rafaleActuel)
+	public Processus(String nom, int nbRafale, int arrive, int rafaleActuel, Color color)
 		{
 		this.nom = nom;
 		this.nbRafale = nbRafale;
 		this.arrive = arrive;
 		this.rafaleActuel = rafaleActuel;
 		this.etat = Etat.READY;
+		this.color = color;
 		}
 
-	public Processus(String nom, int nbRafale, int arrive)
+	public Processus(String nom, int nbRafale, int arrive, Color color)
 		{
-		this(nom, nbRafale, arrive, 0);
+		this(nom, nbRafale, arrive, 0, color);
 		}
 
 	/*------------------------------------------------------------------*\
@@ -30,11 +35,15 @@ public class Processus
 
 	public Box showRafale()
 		{
-		// TODO : Jesh
+		JLabel label = new JLabel(rafaleActuel + "");
+		JButton button = new JButton();
+		button.setBackground(color);
 
-		// Affiche une boxV avec une couleur et un label
-		// retourne une boxV
-		return null;
+		Box box = Box.createVerticalBox();
+		box.add(label);
+		box.add(label);
+
+		return box;
 		}
 
 	/*------------------------------*\
@@ -66,6 +75,11 @@ public class Processus
 		this.etat = etat;
 		}
 
+	public void setColor(Color color)
+		{
+		this.color = color;
+		}
+
 	/*------------------------------*\
 	|*				Get				*|
 	\*------------------------------*/
@@ -95,6 +109,11 @@ public class Processus
 		return this.etat;
 		}
 
+	public Color getColor()
+		{
+		return this.color;
+		}
+
 	/*------------------------------------------------------------------*\
 	|*							Methodes Private						*|
 	\*------------------------------------------------------------------*/
@@ -108,6 +127,7 @@ public class Processus
 	private int nbRafale;
 	private int arrive;
 	private int rafaleActuel;
+	private Color color;
 
 	// Tools
 	private Etat etat;
