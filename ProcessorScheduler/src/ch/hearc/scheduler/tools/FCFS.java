@@ -37,7 +37,6 @@ public class FCFS extends Ordonnanceur
 		currentProcessus.setRafaleActuel(rafaleActu);
 		this.listBoxProcessus.add(currentProcessus.showRafale(indexTotal));
 
-
 		if (currentProcessus.getRafaleActuel() >= currentProcessus.getNbRafale())
 			{
 			currentProcessus.setEtat(Etat.FINISH);

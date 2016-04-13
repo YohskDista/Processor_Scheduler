@@ -80,6 +80,11 @@ public abstract class Ordonnanceur
 	|*				Set				*|
 	\*------------------------------*/
 
+	public void setTimeQuantum(int timeQuantum)
+		{
+		this.timeQuantum = timeQuantum;
+		}
+
 	/*------------------------------*\
 	|*				Get				*|
 	\*------------------------------*/
@@ -122,7 +127,7 @@ public abstract class Ordonnanceur
 				}
 			}
 
-		return startIndex;
+		return startIndex-1;
 		}
 
 	protected void createStartRafales()

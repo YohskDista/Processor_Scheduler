@@ -35,6 +35,7 @@ public class Round_Robin extends Ordonnanceur
 		int rafaleActu = currentProcessus.getRafaleActuel();
 		rafaleActu++;
 		currentProcessus.setRafaleActuel(rafaleActu);
+		this.listBoxProcessus.add(currentProcessus.showRafale(indexTotal));
 
 		myTimeQuantum++;
 
@@ -47,7 +48,6 @@ public class Round_Robin extends Ordonnanceur
 			{
 			currentProcessus.setEtat(Etat.READY);
 			changeCurrentProcessus(getNext());
-			myTimeQuantum = 0;
 			}
 		}
 
@@ -83,10 +83,18 @@ public class Round_Robin extends Ordonnanceur
 	protected Processus getNext()
 		{
 		int indexOfCurrent = listProcessus.indexOf(currentProcessus);
+		int sizeParcourue = 0;
+		Processus p = null;
 
-		indexOfCurrent = (indexOfCurrent + 1) % listProcessus.size();
+		do
+			{
+			indexOfCurrent = (indexOfCurrent + 1) % listProcessus.size();
+			p = listProcessus.get(indexOfCurrent);
 
-		return listProcessus.get(indexOfCurrent);
+			sizeParcourue++;
+			}while(p.getEtat() == Etat.FINISH && sizeParcourue < listProcessus.size());
+
+		return p;
 		}
 
 	/*------------------------------------------------------------------*\

@@ -1,3 +1,4 @@
+
 package ch.hearc.scheduler.graphic.creation.panel;
 
 import java.awt.Color;
@@ -71,7 +72,7 @@ public class JPanelCreateOrdonnanceur extends JPanel
 
 	private void geometry()
 		{
-			// JComponent : Instanciation
+		// JComponent : Instanciation
 		this.jComboBoxChooseOrdonnanceur = new JComboBox<Ordonnanceur>();
 		this.jButtonCreateOrdonnanceur = new JButton("Créer");
 		this.jLabelQuantum = new JLabel("Quantum : ");
@@ -88,7 +89,7 @@ public class JPanelCreateOrdonnanceur extends JPanel
 		this.boxV.add(this.boxVQuantum);
 		this.boxV.add(this.jButtonCreateOrdonnanceur);
 
-		for(Entry<String, Ordonnanceur> entry : mapOrdonnanceur.entrySet())
+		for(Entry<String, Ordonnanceur> entry:mapOrdonnanceur.entrySet())
 			{
 			this.jComboBoxChooseOrdonnanceur.addItem(entry.getValue());
 			}
@@ -110,10 +111,23 @@ public class JPanelCreateOrdonnanceur extends JPanel
 		{
 		this.jButtonCreateOrdonnanceur.addMouseListener(new MouseAdapter()
 			{
+
 				@Override
 				public void mouseClicked(MouseEvent arg0)
 					{
-					Ordonnanceur ordonnanceur = (Ordonnanceur) jComboBoxChooseOrdonnanceur.getSelectedItem();
+					Ordonnanceur ordonnanceur = (Ordonnanceur)jComboBoxChooseOrdonnanceur.getSelectedItem();
+
+					int quantum = 0;
+					try
+						{
+						quantum = Integer.parseInt(jTextFieldQuantum.getText());
+						}
+					catch (Exception e)
+						{
+						quantum = 0;
+						}
+
+					ordonnanceur.setTimeQuantum(quantum);
 
 					jPanelCreation.setOrdonnanceur(ordonnanceur);
 					System.out.println("Création ordonnanceur : " + ordonnanceur);
@@ -122,11 +136,12 @@ public class JPanelCreateOrdonnanceur extends JPanel
 
 		this.jComboBoxChooseOrdonnanceur.addActionListener(new ActionListener()
 			{
+
 				@Override
 				public void actionPerformed(ActionEvent e)
 					{
-					Ordonnanceur ordonnanceur = (Ordonnanceur) jComboBoxChooseOrdonnanceur.getSelectedItem();
-					if(ordonnanceur.getName().equals("Round Robin"))
+					Ordonnanceur ordonnanceur = (Ordonnanceur)jComboBoxChooseOrdonnanceur.getSelectedItem();
+					if (ordonnanceur.getName().equals("Round Robin"))
 						{
 						boxVQuantum.setVisible(true);
 						}
