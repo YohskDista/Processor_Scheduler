@@ -33,17 +33,38 @@ public class Processus
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
-	public Box showRafale()
+	public Box showRafale(int index)
 		{
-		JLabel label = new JLabel(rafaleActuel + "");
+		JLabel label = new JLabel(index + "");
 		JButton button = new JButton();
 		button.setBackground(color);
+		button.setEnabled(false);
 
 		Box box = Box.createVerticalBox();
-		box.add(label);
+		box.add(button);
 		box.add(label);
 
 		return box;
+		}
+
+	@Override
+	public String toString()
+		{
+		StringBuilder builder = new StringBuilder();
+		builder.append("Processus [nom=");
+		builder.append(this.nom);
+		builder.append(", nbRafale=");
+		builder.append(this.nbRafale);
+		builder.append(", arrive=");
+		builder.append(this.arrive);
+		builder.append(", rafaleActuel=");
+		builder.append(this.rafaleActuel);
+		builder.append(", color=");
+		builder.append(this.color);
+		builder.append(", etat=");
+		builder.append(this.etat);
+		builder.append("]");
+		return builder.toString();
 		}
 
 	/*------------------------------*\

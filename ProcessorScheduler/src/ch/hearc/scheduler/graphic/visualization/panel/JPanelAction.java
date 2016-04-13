@@ -2,8 +2,10 @@ package ch.hearc.scheduler.graphic.visualization.panel;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.util.List;
 
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.JPanel;
 
 import ch.hearc.scheduler.tools.Ordonnanceur;
@@ -32,6 +34,20 @@ public class JPanelAction extends JPanel
 	public void addProcessus(Processus processus)
 		{
 		this.ordonnanceur.addProcessus(processus);
+		}
+
+
+	public void startVisualization()
+		{
+		int totalRafale = this.ordonnanceur.getTotalRafale();
+		this.listBoxProcessus = this.ordonnanceur.showProcessus();
+
+		for(Box box : this.listBoxProcessus)
+			{
+			this.add(box);
+			}
+
+		this.revalidate();
 		}
 
 	/*------------------------------*\
@@ -91,6 +107,6 @@ public class JPanelAction extends JPanel
 	private Ordonnanceur ordonnanceur;
 
 	// Tools
-
+	private List<Box> listBoxProcessus;
 
 	}

@@ -116,6 +116,7 @@ public class JPanelCreateOrdonnanceur extends JPanel
 					Ordonnanceur ordonnanceur = (Ordonnanceur) jComboBoxChooseOrdonnanceur.getSelectedItem();
 
 					jPanelCreation.setOrdonnanceur(ordonnanceur);
+					System.out.println("Création ordonnanceur : " + ordonnanceur);
 					}
 			});
 
