@@ -1,6 +1,8 @@
 
 package ch.hearc.scheduler.tools;
 
+import java.util.Comparator;
+
 public class FCFS extends Ordonnanceur
 	{
 
@@ -23,6 +25,7 @@ public class FCFS extends Ordonnanceur
 	@Override
 	public void initTick()
 		{
+		sortList();
 		changeCurrentProcessus(getNext());
 		}
 
@@ -32,6 +35,8 @@ public class FCFS extends Ordonnanceur
 		int rafaleActu = currentProcessus.getRafaleActuel();
 		rafaleActu++;
 		currentProcessus.setRafaleActuel(rafaleActu);
+		this.listBoxProcessus.add(currentProcessus.showRafale(indexTotal));
+
 
 		if (currentProcessus.getRafaleActuel() >= currentProcessus.getNbRafale())
 			{
@@ -70,12 +75,33 @@ public class FCFS extends Ordonnanceur
 	protected Processus getNext()
 		{
 		int indexOfCurrent = listProcessus.indexOf(currentProcessus);
-		return listProcessus.get(indexOfCurrent + 1);
+
+		System.out.println("Index : " + indexOfCurrent);
+
+		if (indexOfCurrent + 1 < listProcessus.size())
+			{
+			indexOfCurrent++;
+			}
+
+		return listProcessus.get(indexOfCurrent);
 		}
 
 	/*------------------------------------------------------------------*\
 	|*							Methodes Private						*|
 	\*------------------------------------------------------------------*/
+
+	private void sortList()
+		{
+		listProcessus.sort(new Comparator<Processus>()
+			{
+
+				@Override
+				public int compare(Processus p1, Processus p2)
+					{
+					return p1.getArrive() - p2.getArrive();
+					}
+			});
+		}
 
 	/*------------------------------------------------------------------*\
 	|*							Attributs Private						*|

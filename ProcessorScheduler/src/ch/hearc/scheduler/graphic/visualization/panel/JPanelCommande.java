@@ -69,8 +69,7 @@ public class JPanelCommande extends JPanel
 				@Override
 				public void mouseClicked(MouseEvent e)
 					{
-					// TODO Auto-generated method stub
-
+					jPanelAction.startVisualization();
 					}
 			});
 

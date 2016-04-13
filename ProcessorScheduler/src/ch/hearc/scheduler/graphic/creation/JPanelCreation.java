@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 
 import javax.swing.Box;
 import javax.swing.JPanel;
+import javax.swing.JSplitPane;
 
 import ch.hearc.scheduler.graphic.creation.panel.JPanelCreateOrdonnanceur;
 import ch.hearc.scheduler.graphic.creation.panel.JPanelCreateProcessus;
@@ -69,11 +70,12 @@ public class JPanelCreation extends JPanel
 		this.jPanelCreateProcessus = new JPanelCreateProcessus(this);
 		this.jPanelResume = new JPanelResume(this);
 
+		this.jSplitOrdonnProcess = new JSplitPane(JSplitPane.VERTICAL_SPLIT, this.jPanelCreateOrdonnanceur, this.jPanelCreateProcessus);
+		this.jSplitResumeOther = new JSplitPane(JSplitPane.VERTICAL_SPLIT, this.jSplitOrdonnProcess, this.jPanelResume);
+
 		this.boxV = Box.createVerticalBox();
 
-		this.boxV.add(jPanelCreateOrdonnanceur);
-		this.boxV.add(jPanelCreateProcessus);
-		this.boxV.add(jPanelResume);
+		this.boxV.add(jSplitOrdonnProcess);
 
 		setLayout(new BorderLayout());
 		add(boxV, BorderLayout.CENTER);
@@ -101,5 +103,8 @@ public class JPanelCreation extends JPanel
 	private JPanelCreateProcessus jPanelCreateProcessus;
 	private JPanelResume jPanelResume;
 	private Box boxV;
+
+	private JSplitPane jSplitOrdonnProcess;
+	private JSplitPane jSplitResumeOther;
 
 	}

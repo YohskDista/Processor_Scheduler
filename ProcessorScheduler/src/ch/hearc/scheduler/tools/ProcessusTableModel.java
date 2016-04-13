@@ -64,13 +64,9 @@ public class ProcessusTableModel extends AbstractTableModel
 
 	public void addProcessus(Processus processus)
 		{
-		insertProcessus(getRowCount(), processus);
-		}
-
-	public void insertProcessus(int row, Processus processus)
-		{
-		this.listProcessus.add(row, processus);
-		this.fireTableRowsInserted(row, row);
+		this.listProcessus.add(processus);
+		this.fireTableRowsInserted(getRowCount(), getRowCount());
+		this.fireTableDataChanged();
 		}
 
 	/*------------------------------*\

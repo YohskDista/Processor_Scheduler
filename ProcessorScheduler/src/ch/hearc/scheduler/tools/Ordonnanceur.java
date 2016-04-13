@@ -1,10 +1,13 @@
 
 package ch.hearc.scheduler.tools;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.Box;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 
 public abstract class Ordonnanceur
 	{
@@ -19,6 +22,7 @@ public abstract class Ordonnanceur
 		this.currentProcessus = null;
 		this.listProcessus = new ArrayList<Processus>();
 		this.timeQuantum = timeQuantum;
+		this.indexTotal = 0;
 		}
 
 	public Ordonnanceur(String name)
@@ -50,11 +54,18 @@ public abstract class Ordonnanceur
 
 	public List<Box> showProcessus()
 		{
-		// TODO : Dista
+		this.listBoxProcessus = new ArrayList<Box>();
+		indexTotal = getStartIndex();
+		createStartRafales();
+		initTick();
 
-		// Affiche les processus
-		// retourne une liste de boxV
-		return null;
+		for(int i = indexTotal+1; i <= getTotalRafale(); i++)
+			{
+			this.indexTotal++;
+			tick();
+			}
+
+		return this.listBoxProcessus;
 		}
 
 	/*------------------------------------------------------------------*\
@@ -83,13 +94,9 @@ public abstract class Ordonnanceur
 		return this.listProcessus;
 		}
 
-	/*------------------------------------------------------------------*\
-	|*							Methodes Protected						*|
-	\*------------------------------------------------------------------*/
-
-	protected int getTotalRafale()
+	public int getTotalRafale()
 		{
-		int totalRafale = 0;
+		int totalRafale = getStartIndex();
 
 		for(Processus processus:listProcessus)
 			{
@@ -98,6 +105,44 @@ public abstract class Ordonnanceur
 
 		return totalRafale;
 		}
+
+	/*------------------------------------------------------------------*\
+	|*							Methodes Protected						*|
+	\*------------------------------------------------------------------*/
+
+	protected int getStartIndex()
+		{
+		int startIndex = this.listProcessus.get(0).getArrive();
+
+		for(Processus p : this.listProcessus)
+			{
+			if (p.getArrive() < startIndex)
+				{
+				startIndex = p.getArrive();
+				}
+			}
+
+		return startIndex;
+		}
+
+	protected void createStartRafales()
+	{
+		int startRafale = getStartIndex();
+
+		for(int i = 1; i <= startRafale; i++)
+			{
+			JLabel label = new JLabel(i + "");
+			JButton button = new JButton();
+			button.setBackground(Color.GRAY);
+			button.setEnabled(false);
+
+			Box box = Box.createVerticalBox();
+			box.add(button);
+			box.add(label);
+
+			this.listBoxProcessus.add(box);
+			}
+	}
 
 	/*------------------------------------------------------------------*\
 	|*							Methodes Abstract						*|
@@ -122,5 +167,9 @@ public abstract class Ordonnanceur
 	// Tools
 	protected List<Processus> listProcessus;
 	protected Processus currentProcessus;
+
+	protected List<Box> listBoxProcessus;
+
+	protected int indexTotal;
 
 	}

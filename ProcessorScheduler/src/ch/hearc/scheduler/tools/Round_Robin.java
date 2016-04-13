@@ -47,6 +47,7 @@ public class Round_Robin extends Ordonnanceur
 			{
 			currentProcessus.setEtat(Etat.READY);
 			changeCurrentProcessus(getNext());
+			myTimeQuantum = 0;
 			}
 		}
 
@@ -82,7 +83,10 @@ public class Round_Robin extends Ordonnanceur
 	protected Processus getNext()
 		{
 		int indexOfCurrent = listProcessus.indexOf(currentProcessus);
-		return listProcessus.get(indexOfCurrent + 1);
+
+		indexOfCurrent = (indexOfCurrent + 1) % listProcessus.size();
+
+		return listProcessus.get(indexOfCurrent);
 		}
 
 	/*------------------------------------------------------------------*\
