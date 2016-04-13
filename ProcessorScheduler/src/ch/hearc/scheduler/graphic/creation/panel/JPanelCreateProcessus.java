@@ -1,6 +1,7 @@
 
 package ch.hearc.scheduler.graphic.creation.panel;
 
+import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -84,6 +85,7 @@ public class JPanelCreateProcessus extends JPanel
 		{
 		this.jButtonCreateProcessus.addMouseListener(new MouseAdapter()
 			{
+
 				@Override
 				public void mouseClicked(MouseEvent e)
 					{
@@ -93,10 +95,10 @@ public class JPanelCreateProcessus extends JPanel
 						int arrive = Integer.parseInt(jTextFieldArrive.getText());
 						int nbRafale = Integer.parseInt(jTextFieldRafale.getText());
 
-						Processus processus = new Processus(nom, nbRafale, arrive);
+						Processus processus = new Processus(nom, nbRafale, arrive, Color.red);
 						jPanelCreation.addProcessus(processus);
 						}
-					catch(Exception err)
+					catch (Exception err)
 						{
 						System.out.println("Erreur");
 						}
