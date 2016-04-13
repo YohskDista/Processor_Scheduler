@@ -30,7 +30,7 @@ public class JPanelVisualization extends JPanel
 
 	public void addProcessus(Processus processus)
 		{
-		if (this.jPanelAction.getOrdonnanceur() != null) { return; }
+		if (this.jPanelAction.getOrdonnanceur() == null) { return; }
 
 		this.jPanelAction.addProcessus(processus);
 		}

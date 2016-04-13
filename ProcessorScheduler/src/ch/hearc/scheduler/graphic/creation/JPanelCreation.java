@@ -1,5 +1,6 @@
 
 package ch.hearc.scheduler.graphic.creation;
+
 import java.awt.BorderLayout;
 
 import javax.swing.Box;
@@ -7,10 +8,10 @@ import javax.swing.JPanel;
 
 import ch.hearc.scheduler.graphic.creation.panel.JPanelCreateOrdonnanceur;
 import ch.hearc.scheduler.graphic.creation.panel.JPanelCreateProcessus;
+import ch.hearc.scheduler.graphic.creation.panel.JPanelResume;
 import ch.hearc.scheduler.graphic.visualization.JPanelVisualization;
 import ch.hearc.scheduler.tools.Ordonnanceur;
 import ch.hearc.scheduler.tools.Processus;
-
 
 public class JPanelCreation extends JPanel
 	{
@@ -35,6 +36,7 @@ public class JPanelCreation extends JPanel
 	public void addProcessus(Processus processus)
 		{
 		this.jPanelVisualization.addProcessus(processus);
+		this.jPanelResume.refresh();
 		}
 
 	/*------------------------------*\
@@ -44,11 +46,17 @@ public class JPanelCreation extends JPanel
 	public void setOrdonnanceur(Ordonnanceur ordonnanceur)
 		{
 		this.jPanelVisualization.setOrdonnanceur(ordonnanceur);
+		this.jPanelResume.setOrdonnanceur(this.jPanelVisualization.getOrdonnanceur());
 		}
 
 	/*------------------------------*\
 	|*				Get				*|
 	\*------------------------------*/
+
+	public Ordonnanceur getOrdonnanceur()
+		{
+		return this.jPanelVisualization.getOrdonnanceur();
+		}
 
 	/*------------------------------------------------------------------*\
 	|*							Methodes Private						*|
@@ -59,11 +67,13 @@ public class JPanelCreation extends JPanel
 		// JComponent : Instanciation
 		this.jPanelCreateOrdonnanceur = new JPanelCreateOrdonnanceur(this);
 		this.jPanelCreateProcessus = new JPanelCreateProcessus(this);
+		this.jPanelResume = new JPanelResume(this);
 
 		this.boxV = Box.createVerticalBox();
 
 		this.boxV.add(jPanelCreateOrdonnanceur);
 		this.boxV.add(jPanelCreateProcessus);
+		this.boxV.add(jPanelResume);
 
 		setLayout(new BorderLayout());
 		add(boxV, BorderLayout.CENTER);
@@ -89,6 +99,7 @@ public class JPanelCreation extends JPanel
 	// Tools
 	private JPanelCreateOrdonnanceur jPanelCreateOrdonnanceur;
 	private JPanelCreateProcessus jPanelCreateProcessus;
+	private JPanelResume jPanelResume;
 	private Box boxV;
 
 	}

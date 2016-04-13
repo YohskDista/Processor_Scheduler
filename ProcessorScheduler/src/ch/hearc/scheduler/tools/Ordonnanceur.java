@@ -78,6 +78,11 @@ public abstract class Ordonnanceur
 		return this.name;
 		}
 
+	public List<Processus> getListProcessus()
+		{
+		return this.listProcessus;
+		}
+
 	/*------------------------------------------------------------------*\
 	|*							Methodes Protected						*|
 	\*------------------------------------------------------------------*/
