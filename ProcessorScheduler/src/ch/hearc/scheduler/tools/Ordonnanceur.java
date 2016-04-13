@@ -4,6 +4,8 @@ package ch.hearc.scheduler.tools;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.Box;
+
 public abstract class Ordonnanceur
 	{
 
@@ -44,6 +46,15 @@ public abstract class Ordonnanceur
 		StringBuilder builder = new StringBuilder();
 		builder.append(this.name);
 		return builder.toString();
+		}
+
+	public List<Box> showProcessus()
+		{
+		// TODO : Dista
+
+		// Affiche les processus
+		// retourne une liste de boxV
+		return null;
 		}
 
 	/*------------------------------------------------------------------*\

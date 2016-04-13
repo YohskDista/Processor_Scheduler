@@ -1,6 +1,8 @@
 
 package ch.hearc.scheduler.tools;
 
+import javax.swing.Box;
+
 public class Processus
 	{
 
@@ -14,7 +16,7 @@ public class Processus
 		this.nbRafale = nbRafale;
 		this.arrive = arrive;
 		this.rafaleActuel = rafaleActuel;
-		this.etat =  Etat.READY;
+		this.etat = Etat.READY;
 		}
 
 	public Processus(String nom, int nbRafale, int arrive)
@@ -25,6 +27,15 @@ public class Processus
 	/*------------------------------------------------------------------*\
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
+
+	public Box showRafale()
+		{
+		// TODO : Jesh
+
+		// Affiche une boxV avec une couleur et un label
+		// retourne une boxV
+		return null;
+		}
 
 	/*------------------------------*\
 	|*				Set				*|
