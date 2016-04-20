@@ -1,17 +1,17 @@
 
 package ch.hearc.scheduler.graphic.creation.panel;
 
-import java.awt.FlowLayout;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.swing.Box;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 
 import ch.hearc.scheduler.graphic.creation.JPanelCreation;
 import ch.hearc.scheduler.tools.Ordonnanceur;
 import ch.hearc.scheduler.tools.Processus;
-import ch.hearc.scheduler.tools.ProcessusTableModel;
+import ch.hearc.scheduler.tools.panel.JPanelProcessusCreate;
 
 public class JPanelResume extends JPanel
 	{
@@ -23,6 +23,7 @@ public class JPanelResume extends JPanel
 	public JPanelResume(JPanelCreation jPanelCreation)
 		{
 		this.jPanelCreation = jPanelCreation;
+		this.listJPanelProcessusCreates = new ArrayList<JPanelProcessusCreate>();
 
 		geometry();
 		control();
@@ -33,12 +34,22 @@ public class JPanelResume extends JPanel
 	|*							Methodes Public							*|
 	\*------------------------------------------------------------------*/
 
-	public void refresh()
+	public void deleteProcessus(JPanelProcessusCreate jPanelProcessusCreate, Processus processus)
 		{
-		this.ordonnanceur = this.jPanelCreation.getOrdonnanceur();
+		this.boxV.remove(jPanelProcessusCreate);
+		this.listJPanelProcessusCreates.remove(jPanelProcessusCreate);
+		this.jPanelCreation.deleteProcessus(processus);
 
-		Processus p = this.ordonnanceur.getListProcessus().get(this.ordonnanceur.getListProcessus().size()-1);
-		this.processusTableModel.addProcessus(p);
+		this.revalidate();
+		}
+
+	public void addProcessus(Processus processus)
+		{
+		JPanelProcessusCreate jPanelProcessusCreate = new JPanelProcessusCreate(this, processus);
+		this.listJPanelProcessusCreates.add(jPanelProcessusCreate);
+
+		this.boxV.add(jPanelProcessusCreate);
+		this.revalidate();
 		}
 
 	/*------------------------------*\
@@ -49,6 +60,7 @@ public class JPanelResume extends JPanel
 		{
 		this.ordonnanceur = ordonnanceur;
 		this.jLabelOrdonnanceur.setText(ordonnanceur.getName());
+		this.erase();
 		}
 
 	/*------------------------------*\
@@ -59,28 +71,39 @@ public class JPanelResume extends JPanel
 	|*							Methodes Private						*|
 	\*------------------------------------------------------------------*/
 
+	private void erase()
+		{
+		for(JPanelProcessusCreate jPanelProcessusCreate:listJPanelProcessusCreates)
+			{
+			this.boxV.remove(jPanelProcessusCreate);
+			}
+
+		this.listJPanelProcessusCreates = new ArrayList<JPanelProcessusCreate>();
+		revalidate();
+		}
+
 	private void geometry()
 		{
 		// JComponent : Instanciation
 		this.jLabelOrdonnanceur = new JLabel();
-		this.processusTableModel = new ProcessusTableModel();
-		this.jTableProcessus = new JTable(this.processusTableModel);
-
-		jTableProcessus.setPreferredScrollableViewportSize(jTableProcessus.getPreferredSize());
-		jTableProcessus.setFillsViewportHeight(true);
 
 			// Layout : Specification
 			{
-			FlowLayout flowlayout = new FlowLayout(FlowLayout.CENTER);
-			setLayout(flowlayout);
+			this.boxV = Box.createVerticalBox();
 
 			// flowlayout.setHgap(20);
 			// flowlayout.setVgap(20);
 			}
 
 		// JComponent : add
-		this.add(this.jLabelOrdonnanceur);
-		this.add(new JScrollPane(this.jTableProcessus));
+		boxV.add(this.jLabelOrdonnanceur);
+
+		for(JPanelProcessusCreate jPanelProcessusCreate:listJPanelProcessusCreates)
+			{
+			boxV.add(jPanelProcessusCreate);
+			}
+
+		this.add(boxV);
 		}
 
 	private void control()
@@ -102,9 +125,9 @@ public class JPanelResume extends JPanel
 
 	// Tools
 	private Ordonnanceur ordonnanceur;
-
 	private JLabel jLabelOrdonnanceur;
-	private JTable jTableProcessus;
-	private ProcessusTableModel processusTableModel;
+	private List<JPanelProcessusCreate> listJPanelProcessusCreates;
+
+	private Box boxV;
 
 	}

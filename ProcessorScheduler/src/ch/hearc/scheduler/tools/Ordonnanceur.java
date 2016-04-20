@@ -54,18 +54,25 @@ public abstract class Ordonnanceur
 
 	public List<Box> showProcessus()
 		{
-		this.listBoxProcessus = new ArrayList<Box>();
-		indexTotal = getStartIndex();
-		createStartRafales();
-		initTick();
+		this.reinit();
 
-		for(int i = indexTotal+1; i <= getTotalRafale(); i++)
+		if (this.listProcessus.size() > 0)
 			{
-			this.indexTotal++;
-			tick();
+			this.listBoxProcessus = new ArrayList<Box>();
+			indexTotal = getStartIndex();
+			createStartRafales();
+			initTick();
+
+			for(int i = indexTotal + 1; i <= getTotalRafale(); i++)
+				{
+				this.indexTotal++;
+				tick();
+				}
+
+			return this.listBoxProcessus;
 			}
 
-		return this.listBoxProcessus;
+		return new ArrayList<Box>();
 		}
 
 	/*------------------------------------------------------------------*\
@@ -119,7 +126,7 @@ public abstract class Ordonnanceur
 		{
 		int startIndex = this.listProcessus.get(0).getArrive();
 
-		for(Processus p : this.listProcessus)
+		for(Processus p:this.listProcessus)
 			{
 			if (p.getArrive() < startIndex)
 				{
@@ -127,11 +134,11 @@ public abstract class Ordonnanceur
 				}
 			}
 
-		return startIndex-1;
+		return startIndex - 1;
 		}
 
 	protected void createStartRafales()
-	{
+		{
 		int startRafale = getStartIndex();
 
 		for(int i = 1; i <= startRafale; i++)
@@ -147,7 +154,15 @@ public abstract class Ordonnanceur
 
 			this.listBoxProcessus.add(box);
 			}
-	}
+		}
+
+	protected void reinitRafaleActu()
+		{
+		for(Processus p:this.listProcessus)
+			{
+			p.setRafaleActuel(0);
+			}
+		}
 
 	/*------------------------------------------------------------------*\
 	|*							Methodes Abstract						*|
@@ -160,6 +175,12 @@ public abstract class Ordonnanceur
 	/*------------------------------------------------------------------*\
 	|*							Methodes Private						*|
 	\*------------------------------------------------------------------*/
+
+	private void reinit()
+		{
+		this.reinitRafaleActu();
+		this.currentProcessus = null;
+		}
 
 	/*------------------------------------------------------------------*\
 	|*							Attributs Protected						*|
