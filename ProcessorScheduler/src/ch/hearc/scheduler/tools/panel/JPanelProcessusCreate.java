@@ -1,5 +1,6 @@
 package ch.hearc.scheduler.tools.panel;
 
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -53,8 +54,9 @@ public class JPanelProcessusCreate extends JPanel
 
 		this.jButtonColor.setBackground(this.processus.getColor());
 		this.jButtonColor.setForeground(this.processus.getColor());
-		this.jButtonColor.setText(this.processus.getColor().toString());
 		this.jButtonColor.setEnabled(false);
+		this.jButtonColor.setSize(100, 50);
+		this.jButtonColor.setPreferredSize(new Dimension(60, 20));
 
 		this.jButtonDelete.setText("X");
 

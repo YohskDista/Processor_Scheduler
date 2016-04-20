@@ -90,13 +90,10 @@ public class JPanelResume extends JPanel
 			// Layout : Specification
 			{
 			this.boxV = Box.createVerticalBox();
-
-			// flowlayout.setHgap(20);
-			// flowlayout.setVgap(20);
 			}
 
 		// JComponent : add
-		boxV.add(this.jLabelOrdonnanceur);
+		this.boxV.add(this.jLabelOrdonnanceur);
 
 		for(JPanelProcessusCreate jPanelProcessusCreate:listJPanelProcessusCreates)
 			{
