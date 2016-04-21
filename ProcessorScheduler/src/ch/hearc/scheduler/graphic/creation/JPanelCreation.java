@@ -37,7 +37,12 @@ public class JPanelCreation extends JPanel
 	public void addProcessus(Processus processus)
 		{
 		this.jPanelVisualization.addProcessus(processus);
-		this.jPanelResume.refresh();
+		this.jPanelResume.addProcessus(processus);
+		}
+
+	public void deleteProcessus(Processus processus)
+		{
+		this.jPanelVisualization.deleteProcessus(processus);
 		}
 
 	/*------------------------------*\
@@ -71,11 +76,12 @@ public class JPanelCreation extends JPanel
 		this.jPanelResume = new JPanelResume(this);
 
 		this.jSplitOrdonnProcess = new JSplitPane(JSplitPane.VERTICAL_SPLIT, this.jPanelCreateOrdonnanceur, this.jPanelCreateProcessus);
+		this.jSplitOrdonnProcess.setDividerLocation(100);
 		this.jSplitResumeOther = new JSplitPane(JSplitPane.VERTICAL_SPLIT, this.jSplitOrdonnProcess, this.jPanelResume);
 
 		this.boxV = Box.createVerticalBox();
 
-		this.boxV.add(jSplitOrdonnProcess);
+		this.boxV.add(jSplitResumeOther);
 
 		setLayout(new BorderLayout());
 		add(boxV, BorderLayout.CENTER);

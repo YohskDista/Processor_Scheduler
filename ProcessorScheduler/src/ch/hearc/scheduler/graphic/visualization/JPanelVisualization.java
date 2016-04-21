@@ -35,6 +35,13 @@ public class JPanelVisualization extends JPanel
 		this.jPanelAction.addProcessus(processus);
 		}
 
+	public void deleteProcessus(Processus processus)
+		{
+		if (this.jPanelAction.getOrdonnanceur() == null) { return; }
+
+		this.jPanelAction.deleteProcessus(processus);
+		}
+
 	/*------------------------------*\
 	|*				Set				*|
 	\*------------------------------*/
