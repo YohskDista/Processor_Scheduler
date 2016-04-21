@@ -1,7 +1,9 @@
 
 package ch.hearc.scheduler.tools;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 public class SJF_Preemptif extends Ordonnanceur
 	{
@@ -13,6 +15,8 @@ public class SJF_Preemptif extends Ordonnanceur
 	public SJF_Preemptif(String name)
 		{
 		super(name);
+
+		listProcessusSelectable = new ArrayList<Processus>();
 		}
 
 	/*------------------------------------------------------------------*\
@@ -33,11 +37,15 @@ public class SJF_Preemptif extends Ordonnanceur
 	@Override
 	public void tick()
 		{
+		System.out.println("");
+		System.out.println("Current : " + currentProcessus);
+
 		int rafaleActu = currentProcessus.getRafaleActuel();
 		rafaleActu++;
 		currentProcessus.setRafaleActuel(rafaleActu);
+		this.listBoxProcessus.add(currentProcessus.showRafale(indexTotal));
 
-		if (currentProcessus.getRafaleActuel() >= currentProcessus.getNbRafale())
+		if (currentProcessus.getRafaleActuel() > currentProcessus.getNbRafale())
 			{
 			currentProcessus.setEtat(Etat.FINISH);
 			}
@@ -79,10 +87,32 @@ public class SJF_Preemptif extends Ordonnanceur
 	protected Processus getNext()
 		{
 		sortList();
+		listProcessusSelectable.clear();
+
+		System.out.println("Passe1 : " + listProcessus.toString());
 
 		for(Processus processus:listProcessus)
 			{
-			if (processus.getEtat() == Etat.READY) { return processus; }
+			if (processus.getArrive() <= indexTotal && processus.getEtat() == Etat.READY)
+				{
+				listProcessusSelectable.add(processus);
+				}
+			}
+
+		System.out.println("Passe 2 : " + listProcessusSelectable.toString());
+		System.out.println("Nb tick : " + indexTotal);
+
+		if (listProcessusSelectable.size() > 0)
+			{
+			try
+				{
+				sortListRafaleLeft();
+				}
+			catch (NullPointerException e)
+				{
+				// Rien
+				}
+			return listProcessusSelectable.get(0);
 			}
 
 		return null;
@@ -93,7 +123,7 @@ public class SJF_Preemptif extends Ordonnanceur
 	\*------------------------------------------------------------------*/
 
 	/**
-	 * Sorting list by their number of rafale
+	 * Sorting list by their arrival time and after, by their nb of rafale left
 	 */
 	private void sortList()
 		{
@@ -103,7 +133,31 @@ public class SJF_Preemptif extends Ordonnanceur
 				@Override
 				public int compare(Processus p1, Processus p2)
 					{
-					return (p2.getNbRafale() - p2.getRafaleActuel()) - (p1.getNbRafale() - p1.getRafaleActuel());
+					if (p1.getArrive() == p2.getArrive())
+						{
+						return (p1.getNbRafale() - p1.getRafaleActuel()) - (p2.getNbRafale() - p2.getRafaleActuel());
+						}
+					else
+						{
+						return p1.getArrive() - p2.getArrive();
+						}
+					}
+
+			});
+		}
+
+	/**
+	 * Sorting list by their nb of rafale left
+	 */
+	private void sortListRafaleLeft()
+		{
+		listProcessusSelectable.sort(new Comparator<Processus>()
+			{
+
+				@Override
+				public int compare(Processus p1, Processus p2)
+					{
+					return (p1.getNbRafale() - p1.getRafaleActuel()) - (p2.getNbRafale() - p2.getRafaleActuel());
 					}
 			});
 		}
@@ -111,4 +165,7 @@ public class SJF_Preemptif extends Ordonnanceur
 	/*------------------------------------------------------------------*\
 	|*							Attributs Private						*|
 	\*------------------------------------------------------------------*/
+
+	// Tools
+	List<Processus> listProcessusSelectable;
 	}

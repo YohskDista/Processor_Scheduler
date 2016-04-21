@@ -59,7 +59,7 @@ public abstract class Ordonnanceur
 		createStartRafales();
 		initTick();
 
-		for(int i = indexTotal+1; i <= getTotalRafale(); i++)
+		for(int i = indexTotal + 1; i <= getTotalRafale(); i++)
 			{
 			this.indexTotal++;
 			tick();
@@ -119,7 +119,7 @@ public abstract class Ordonnanceur
 		{
 		int startIndex = this.listProcessus.get(0).getArrive();
 
-		for(Processus p : this.listProcessus)
+		for(Processus p:this.listProcessus)
 			{
 			if (p.getArrive() < startIndex)
 				{
@@ -127,11 +127,11 @@ public abstract class Ordonnanceur
 				}
 			}
 
-		return startIndex-1;
+		return startIndex - 1;
 		}
 
 	protected void createStartRafales()
-	{
+		{
 		int startRafale = getStartIndex();
 
 		for(int i = 1; i <= startRafale; i++)
@@ -147,7 +147,7 @@ public abstract class Ordonnanceur
 
 			this.listBoxProcessus.add(box);
 			}
-	}
+		}
 
 	/*------------------------------------------------------------------*\
 	|*							Methodes Abstract						*|
