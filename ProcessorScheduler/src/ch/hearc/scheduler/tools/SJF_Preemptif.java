@@ -32,20 +32,18 @@ public class SJF_Preemptif extends Ordonnanceur
 		{
 		sortList();
 		currentProcessus = listProcessus.get(0);
+		currentProcessus.setEtat(Etat.RUNNING);
 		}
 
 	@Override
 	public void tick()
 		{
-		System.out.println("");
-		System.out.println("Current : " + currentProcessus);
-
 		int rafaleActu = currentProcessus.getRafaleActuel();
 		rafaleActu++;
 		currentProcessus.setRafaleActuel(rafaleActu);
 		this.listBoxProcessus.add(currentProcessus.showRafale(indexTotal));
 
-		if (currentProcessus.getRafaleActuel() > currentProcessus.getNbRafale())
+		if (currentProcessus.getRafaleActuel() >= currentProcessus.getNbRafale())
 			{
 			currentProcessus.setEtat(Etat.FINISH);
 			}
@@ -89,18 +87,13 @@ public class SJF_Preemptif extends Ordonnanceur
 		sortList();
 		listProcessusSelectable.clear();
 
-		System.out.println("Passe1 : " + listProcessus.toString());
-
 		for(Processus processus:listProcessus)
 			{
-			if (processus.getArrive() <= indexTotal && processus.getEtat() == Etat.READY)
+			if (processus.getArrive() <= (indexTotal + 1) && processus.getEtat() == Etat.READY)
 				{
 				listProcessusSelectable.add(processus);
 				}
 			}
-
-		System.out.println("Passe 2 : " + listProcessusSelectable.toString());
-		System.out.println("Nb tick : " + indexTotal);
 
 		if (listProcessusSelectable.size() > 0)
 			{
