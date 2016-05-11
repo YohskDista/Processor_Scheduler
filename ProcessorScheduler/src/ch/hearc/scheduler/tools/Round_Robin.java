@@ -92,7 +92,7 @@ public class Round_Robin extends Ordonnanceur
 			p = listProcessus.get(indexOfCurrent);
 
 			sizeParcourue++;
-			}while(p.getEtat() == Etat.FINISH && sizeParcourue < listProcessus.size());
+			} while(p.getEtat() == Etat.FINISH && sizeParcourue < listProcessus.size());
 
 		return p;
 		}

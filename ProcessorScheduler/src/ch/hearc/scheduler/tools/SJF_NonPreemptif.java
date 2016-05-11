@@ -28,6 +28,7 @@ public class SJF_NonPreemptif extends Ordonnanceur
 		{
 		sortList();
 		currentProcessus = listProcessus.get(0);
+		currentProcessus.setEtat(Etat.RUNNING);
 		}
 
 	@Override
@@ -36,6 +37,7 @@ public class SJF_NonPreemptif extends Ordonnanceur
 		int rafaleActu = currentProcessus.getRafaleActuel();
 		rafaleActu++;
 		currentProcessus.setRafaleActuel(rafaleActu);
+		this.listBoxProcessus.add(currentProcessus.showRafale(indexTotal));
 
 		if (currentProcessus.getRafaleActuel() >= currentProcessus.getNbRafale())
 			{
@@ -88,7 +90,7 @@ public class SJF_NonPreemptif extends Ordonnanceur
 	\*------------------------------------------------------------------*/
 
 	/**
-	 * Sorting list by their number of rafale
+	 * Sorting list by their arrival time and after, by nb of rafale
 	 */
 	private void sortList()
 		{
@@ -98,7 +100,14 @@ public class SJF_NonPreemptif extends Ordonnanceur
 				@Override
 				public int compare(Processus p1, Processus p2)
 					{
-					return p2.getNbRafale() - p1.getNbRafale();
+					if (p1.getArrive() == p2.getArrive())
+						{
+						return p1.getNbRafale() - p2.getNbRafale();
+						}
+					else
+						{
+						return p1.getArrive() - p2.getArrive();
+						}
 					}
 			});
 		}
