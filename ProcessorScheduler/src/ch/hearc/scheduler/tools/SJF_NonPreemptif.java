@@ -1,7 +1,9 @@
 
 package ch.hearc.scheduler.tools;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 public class SJF_NonPreemptif extends Ordonnanceur
 	{
@@ -13,6 +15,7 @@ public class SJF_NonPreemptif extends Ordonnanceur
 	public SJF_NonPreemptif(String name)
 		{
 		super(name);
+		listProcessusSelectable = new ArrayList<Processus>();
 		}
 
 	/*------------------------------------------------------------------*\
@@ -26,8 +29,10 @@ public class SJF_NonPreemptif extends Ordonnanceur
 	@Override
 	public void initTick()
 		{
+		selectProcessusToSort(listProcessus);
 		sortList();
-		currentProcessus = listProcessus.get(0);
+
+		currentProcessus = listProcessusSelectable.get(0);
 		currentProcessus.setEtat(Etat.RUNNING);
 		}
 
@@ -75,9 +80,10 @@ public class SJF_NonPreemptif extends Ordonnanceur
 	@Override
 	protected Processus getNext()
 		{
+		selectProcessusToSort(listProcessus);
 		sortList();
 
-		for(Processus processus:listProcessus)
+		for(Processus processus:listProcessusSelectable)
 			{
 			if (processus.getEtat() == Etat.READY) { return processus; }
 			}
@@ -94,24 +100,40 @@ public class SJF_NonPreemptif extends Ordonnanceur
 	 */
 	private void sortList()
 		{
-		listProcessus.sort(new Comparator<Processus>()
+		listProcessusSelectable.sort(new Comparator<Processus>()
 			{
 
 				@Override
 				public int compare(Processus p1, Processus p2)
 					{
-					if (p1.getArrive() == p2.getArrive())
+					if (p1.getNbRafale() == p2.getNbRafale())
 						{
-						return p1.getNbRafale() - p2.getNbRafale();
+						return p1.getArrive() - p2.getArrive();
 						}
 					else
 						{
-						return p1.getArrive() - p2.getArrive();
+						return p1.getNbRafale() - p2.getNbRafale();
 						}
 					}
 			});
 		}
+
+	private void selectProcessusToSort(List<Processus> listAllProcessus)
+		{
+		listProcessusSelectable.clear();
+
+		for(Processus processus:listAllProcessus)
+			{
+			if (processus.getArrive() <= (indexTotal + 1))
+				{
+				listProcessusSelectable.add(processus);
+				}
+			}
+		}
+
 	/*------------------------------------------------------------------*\
 	|*							Attributs Private						*|
 	\*------------------------------------------------------------------*/
+	// Tools
+	private List<Processus> listProcessusSelectable;
 	}
