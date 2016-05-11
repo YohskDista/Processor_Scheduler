@@ -108,10 +108,17 @@ public class JPanelCreateProcessus extends JPanel
 
 						Color color = getColor(strColor.toUpperCase());
 
-						Processus processus = new Processus(nom, nbRafale, arrive, color);
-						jPanelCreation.addProcessus(processus);
+						if (arrive >= 0 & nbRafale > 0)
+							{
+							Processus processus = new Processus(nom, nbRafale, arrive, color);
+							jPanelCreation.addProcessus(processus);
 
-						System.out.println("Ajout processus : " + processus);
+							System.out.println("Ajout processus : " + processus);
+							}
+						else
+							{
+							System.err.println("Vérifiez vos valeurs d'arrivés et de rafales");
+							}
 						}
 					catch (Exception err)
 						{
