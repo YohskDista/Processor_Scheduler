@@ -1,7 +1,6 @@
 
 package ch.hearc.scheduler.graphic.creation.panel;
 
-import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,7 +10,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -117,14 +115,15 @@ public class JPanelCreateOrdonnanceur extends JPanel
 					{
 					Ordonnanceur ordonnanceur = (Ordonnanceur)jComboBoxChooseOrdonnanceur.getSelectedItem();
 
-					int quantum = 0;
+					int quantum = 1;
 					try
 						{
 						quantum = Integer.parseInt(jTextFieldQuantum.getText());
 						}
 					catch (Exception e)
 						{
-						quantum = 0;
+						jTextFieldQuantum.setText("1");
+						quantum = 1;
 						}
 
 					ordonnanceur.setTimeQuantum(quantum);
@@ -155,7 +154,6 @@ public class JPanelCreateOrdonnanceur extends JPanel
 
 	private void appearance()
 		{
-		this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		}
 
 	/*------------------------------------------------------------------*\

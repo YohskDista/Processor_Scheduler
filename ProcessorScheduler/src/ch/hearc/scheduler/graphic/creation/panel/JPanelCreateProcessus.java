@@ -124,7 +124,6 @@ public class JPanelCreateProcessus extends JPanel
 
 	private void appearance()
 		{
-		// rien
 		}
 
 	private void createConstraint(SpringLayout springLayout, JComponent jLabel, JComponent jTextField, int space)

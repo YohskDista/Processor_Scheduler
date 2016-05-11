@@ -44,8 +44,6 @@ public class JPanelCommande extends JPanel
 		{
 		// JComponent : Instanciation
 		this.jButtonStart = new JButton("Start");
-		this.jButtonResume = new JButton("Pause");
-		this.jButtonStop = new JButton("Stop");
 
 			// Layout : Specification
 			{
@@ -58,8 +56,6 @@ public class JPanelCommande extends JPanel
 
 		// JComponent : add
 		this.add(this.jButtonStart);
-		this.add(this.jButtonResume);
-		this.add(this.jButtonStop);
 		}
 
 	private void control()
@@ -70,26 +66,6 @@ public class JPanelCommande extends JPanel
 				public void mouseClicked(MouseEvent e)
 					{
 					jPanelAction.startVisualization();
-					}
-			});
-
-		this.jButtonResume.addMouseListener(new MouseAdapter()
-			{
-				@Override
-				public void mouseClicked(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-
-					}
-			});
-
-		this.jButtonStop.addMouseListener(new MouseAdapter()
-			{
-				@Override
-				public void mouseClicked(MouseEvent e)
-					{
-					// TODO Auto-generated method stub
-
 					}
 			});
 		}
@@ -108,7 +84,5 @@ public class JPanelCommande extends JPanel
 
 	// Tools
 	private JButton jButtonStart;
-	private JButton jButtonResume;
-	private JButton jButtonStop;
 
 	}
