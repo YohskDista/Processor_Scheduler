@@ -44,6 +44,11 @@ public abstract class Ordonnanceur
 		this.listProcessus.remove(processus);
 		}
 
+	public void removeAllProcessus()
+		{
+		this.listProcessus.clear();
+		}
+
 	@Override
 	public String toString()
 		{

@@ -65,7 +65,11 @@ public class JPanelAction extends JPanel
 		{
 		this.removeAll();
 		this.revalidate();
+		this.invalidate();
+		this.listBoxProcessus = null;
+		ordonnanceur.removeAllProcessus();
 		this.ordonnanceur = ordonnanceur;
+		System.out.println("Nb processus : " + this.ordonnanceur.getListProcessus().size());
 		}
 
 	/*------------------------------*\
